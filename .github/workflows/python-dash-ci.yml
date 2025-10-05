@@ -1,38 +1,33 @@
 name: Python Dash CI
-# CI workflow to validate core invariants in the AITradingBot project
 
 on:
   push:
-    branches: [ main ]       # Trigger on push to main branch
+    branches: [ main ]
   pull_request:
-    branches: [ main ]       # Trigger on pull requests to main
+    branches: [ main ]
 
 jobs:
   test:
-    runs-on: ubuntu-latest   # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
 
     steps:
-    # 1️⃣ Checkout repository code
-    - name: Checkout code
-      uses: actions/checkout@v3
+    # 1. Checkout code
+    - uses: actions/checkout@v3
 
-    # 2️⃣ Set up Python 3.11
+    # 2. Set up Python
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
 
-    # 3️⃣ Install project dependencies
+    # 3. Install dependencies
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip          # Upgrade pip
-        pip install -r requirements.txt              # Install project dependencies
-        pip install dash[testing]                    # Optional: Install Dash testing tools if needed for UI tests
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        # Include dash[testing] only if you have Dash UI tests
+        pip install dash[testing]
 
-    # ⚠️ Important Note:
-    # Setting PYTHONPATH=. makes sure the 'scripts' directory is treated as a package
-    # This fixes: "ModuleNotFoundError: No module named 'scripts'"
-
-    # 4️⃣ Run core invariants validation
+    # 4. Run core invariants validation
     - name: Run core invariants validation
-      run: PYTHONPATH=. python -m scripts.validate_core_invariants
+      run: python scripts/validate_core_invariants.py
