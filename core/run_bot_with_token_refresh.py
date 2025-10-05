@@ -1,5 +1,5 @@
-from core.brokers.paper_trading import PaperTradingBroker
-from core.brokers.live_broker import LiveBroker
+from core.broker.paper_trading import PaperTradingBroker
+from core.broker.live_trading import LiveBroker
 from core.broker_api import BrokerAPI
 import core.config as config
 import logging
