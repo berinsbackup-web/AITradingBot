@@ -28,8 +28,7 @@ jobs:
           pip install dash[testing]
 
       # 4. Run core invariants validation
-          - name: Run tests
-      run: |
-        export PYTHONPATH=$GITHUB_WORKSPACE
-        python scripts/validate_core_invariants.py
-
+      - name: Run tests
+        run: |
+          export PYTHONPATH=$GITHUB_WORKSPACE
+          python scripts/validate_core_invariants.py
