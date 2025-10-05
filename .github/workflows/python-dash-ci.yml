@@ -25,6 +25,7 @@ jobs:
           pip install dash[testing]
 
       - name: Run tests
+        working-directory: ./AITradingBot   # 👈 Change directory to where core/ lives
         run: |
-          export PYTHONPATH=$GITHUB_WORKSPACE/AITradingBot
+          export PYTHONPATH=$(pwd)
           python scripts/validate_core_invariants.py
