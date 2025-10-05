@@ -1,0 +1,24 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# IDE / Editor files
+.vscode/
+.idea/
+
+# Logs and local data
+*.log
+logs/
+*.db
+*.sqlite
+
+# OS-generated files
+.DS_Store
+Thumbs.db
